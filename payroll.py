@@ -133,7 +133,7 @@ Federal_income_tax = tax_cumulative({(0,9950):0.1,(9951,40525):0.12,(40526,86375
 Ca_income_tax= tax_cumulative({(0,9325):0.01,(9326,22107):0.02,(22108,34892):0.04,(34893,48435):0.06,(48436,61214):0.08,(61215,212686):0.093,(312687,375221):0.103,(375222,625369):0.113,(625370,float('inf')):0.123},"Ca base salary tax")
 Fica_income_tax = tax_flat(0.0765,"FICA base salary tax")
 taxpayer1 = taxpayer("Gavin")
-taxpayer1.add_total_income(152000)
+taxpayer1.add_total_income(155000)
 taxpayer1.BaseSalaryTax(Federal_income_tax,Ca_income_tax,Fica_income_tax)
 ##print(Federal_tax.CountTax(200000))
 ##print(Ca_tax.CountTax(200000))
