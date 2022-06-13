@@ -100,7 +100,7 @@ class four_zero_oneK:
 		self.pretax_acc = pretax_account(pretax_part)
 		self.roth_acc = roth_account(roth_part)
 
-	
+
 	## To be continued
 
 class taxpayer:
@@ -176,8 +176,8 @@ Federal_income_tax = tax_cumulative({(0,9950):0.1,(9951,40525):0.12,(40526,86375
 Ca_income_tax= tax_cumulative({(0,9325):0.01,(9326,22107):0.02,(22108,34892):0.04,(34893,48435):0.06,(48436,61214):0.08,(61215,212686):0.093,(312687,375221):0.103,(375222,625369):0.113,(625370,float('inf')):0.123},"Ca base salary tax")
 Fica_income_tax = tax_combined([SS_income_tax,Medicare_income_tax])
 taxpayer1 = taxpayer("Gavin")
-taxpayer1.add_salary(152000)
-taxpayer1.add_bonus(51000)
+taxpayer1.add_salary(252000)
+taxpayer1.add_bonus(101000)
 taxpayer1.CountTax(Federal_income_tax,Ca_income_tax,Fica_income_tax,Ca_bonus_tax,Federal_bonus_tax)
 ##print(Federal_tax.CountTax(200000))
 ##print(Ca_tax.CountTax(200000))
