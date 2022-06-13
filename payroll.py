@@ -1,4 +1,13 @@
 default_taxpayer_status ={"Marriage":"Single","Resident":"True","Child_num":"0"}
+class tax_combined:
+	def __init__(self,taxes):
+		self.taxes = taxes
+
+	def CountTax(self,income):
+		tax_paid = 0
+		for tax in self.taxes:
+			tax_paid += tax.CountTax(income)
+		return tax_paid
 
 class tax_flat:
 	def __init__(self,tax_rate,name):
@@ -128,10 +137,11 @@ class taxpayer:
 		'''
 		return
 
-
+SS_income_tax = tax_cumulative({(0,147000):0.062,(147001,float('inf')):0},"Social Security base salary tax")
+Medicare_income_tax = tax_cumulative({(0,200000):0.0145,(200001,float('inf')):0.009},"Medicare base salary tax")
 Federal_income_tax = tax_cumulative({(0,9950):0.1,(9951,40525):0.12,(40526,86375):0.22,(86376,164925):0.24,(164926,209425):0.32,(209416,523600):0.35,(523601,float('inf')):0.37},"Fed base salary tax")
 Ca_income_tax= tax_cumulative({(0,9325):0.01,(9326,22107):0.02,(22108,34892):0.04,(34893,48435):0.06,(48436,61214):0.08,(61215,212686):0.093,(312687,375221):0.103,(375222,625369):0.113,(625370,float('inf')):0.123},"Ca base salary tax")
-Fica_income_tax = tax_flat(0.0765,"FICA base salary tax")
+Fica_income_tax = tax_combined([SS_income_tax,Medicare_income_tax])
 taxpayer1 = taxpayer("Gavin")
 taxpayer1.add_total_income(170000)
 taxpayer1.BaseSalaryTax(Federal_income_tax,Ca_income_tax,Fica_income_tax)
